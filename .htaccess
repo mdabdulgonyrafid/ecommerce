@@ -1,0 +1,19 @@
+RewriteEngine on
+
+#disaccess to Functions folder
+RewriteRule ^Functions/?$ - [R=404,L]
+
+# block to read json file
+RedirectMatch 403 ^/.+\.(json)$
+
+# block to read env file
+RedirectMatch 403 ^/.+\.(env)$
+
+# removing file extension
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+
+
+# changing index.php to homepage
+RewriteRule ^homepage index.php [L]
